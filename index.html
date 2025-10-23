@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chào mừng | MyBlog</title>
+  <meta name="description" content="Trang chào mừng đơn giản, hiện đại và responsive." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="welcome-title">
+      <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="url(#g1)" d="M0,192L60,160C120,128,240,64,360,58.7C480,53,600,107,720,144C840,181,960,203,1080,208C1200,213,1320,203,1380,197.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="100%" stop-color="#a78bfa"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="inner">
+        <span class="tagline"><span class="dot" aria-hidden="true"></span> Online • Sẵn sàng chào đón bạn</span>
+        <h1 id="welcome-title">Chào mừng đến với MyBlog 👋</h1>
+        <p class="lead">
+          Trang chào mừng tối giản, đẹp mắt và chạy mượt trên mọi thiết bị.
+          Bạn có thể dùng làm trang chủ, “coming soon” hoặc landing page nhỏ.
+        </p>
+        <div class="actions">
+          <a class="btn" href="#bat-dau" aria-label="Bắt đầu ngay">🚀 Bắt đầu ngay</a>
+          <a class="btn secondary" href="#tim-hieu-them" aria-label="Tìm hiểu thêm">📘 Tìm hiểu thêm</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="bat-dau" class="section">
+      <h2>Bắt đầu</h2>
+      <p>Đặt bài viết Markdown/HTML vào thư mục <code>/posts</code>. Ảnh để ở <code>/assets/images</code>.</p>
+    </section>
+
+    <section id="tim-hieu-them" class="section">
+      <h2>Tìm hiểu thêm</h2>
+      <p>Tuỳ biến màu, font và layout trong <code>assets/css/index.css</code>. Thêm tương tác ở <code>assets/js/index.js</code>.</p>
+    </section>
+
+    <footer>
+      © <span id="y"></span> — Made with ❤️. 
+    </footer>
+  </main>
+
+  <script defer src="assets/js/index.js"></script>
+</body>
+</html>
