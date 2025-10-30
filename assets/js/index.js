@@ -40,6 +40,80 @@
   });
 })();
 
+// Add copy buttons to code blocks on post pages
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    const pres = document.querySelectorAll('main.post pre');
+    pres.forEach(pre => {
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.type = 'button';
+      btn.textContent = 'Copy';
+      btn.addEventListener('click', async () => {
+        try{
+          const code = pre.innerText.replace(/^\s*Copy\s*/,'');
+          await navigator.clipboard.writeText(code);
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(()=>{ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1200);
+        }catch(e){ btn.textContent = 'Error'; setTimeout(()=> btn.textContent = 'Copy', 1200); }
+      });
+      pre.appendChild(btn);
+    });
+  });
+})();
+
+// Typing effect for about title and slogan
+(function(){
+  function typeElement(el, text, speed, delay){
+    const caret = document.createElement('span');
+    caret.className = 'typing-caret';
+    caret.textContent = '|';
+    el.textContent = '';
+    el.appendChild(caret);
+    let i = 0;
+    function tick(){
+      if(i < text.length){
+        caret.before(document.createTextNode(text.charAt(i++)));
+        setTimeout(tick, speed);
+      } else {
+        caret.remove();
+      }
+    }
+    setTimeout(tick, delay);
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    const nodes = document.querySelectorAll('[data-typing]');
+    nodes.forEach((el, idx)=>{
+      const text = el.textContent.trim();
+      const delay = parseInt(el.getAttribute('data-typing-delay')||'0',10) + (idx*100);
+      const speed = 18; // ms per char
+      typeElement(el, text, speed, delay);
+    });
+  });
+})();
+
+// Back to top with progress
+(function(){
+  const btn = document.getElementById('back-to-top');
+  function update(){
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const docH = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - window.innerHeight;
+    const percent = docH > 0 ? Math.min(100, Math.round((scrollTop/docH)*100)) : 0;
+    if(btn){
+      btn.style.setProperty('--scroll', percent + '%');
+      btn.classList.toggle('show', scrollTop > 200);
+    }
+  }
+  document.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('load', update);
+  if(btn){
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+
 // Hero slider effect: smooth slide transition
 (function () {
   const track = document.querySelector('.hero-slider .slides-track');
@@ -69,19 +143,27 @@
   const slides = document.querySelectorAll('.featured-slide');
   const prev = document.querySelector('.featured-slider-prev');
   const next = document.querySelector('.featured-slider-next');
-  const dots = document.querySelectorAll('.featured-slider-dots .dot');
-  let idx = 0; let timerId = null; const INTERVAL_MS = 2500; let slideW = 0;
+  const dotsWrap = document.querySelector('.featured-slider-dots');
+  let dots = [];
+  let idx = 0; let timerId = null; const INTERVAL_MS = 3000; let slideW = 0; let perView = 3; let gapPx = 16; let viewportW = 0; let numPages = 1;
 
-  function applyTransform(){ if(track) track.style.transform = `translateX(-${(idx*slideW)|0}px)`; }
+  function applyTransform(){ if(track) track.style.transform = `translateX(-${(idx*viewportW)|0}px)`; }
 
   function measure(){
     if(!windowEl || !track) return;
     // turn off transition during layout
     const prevTransition = track.style.transition;
     track.style.transition = 'none';
-    slideW = Math.round(windowEl.getBoundingClientRect().width);
+    const ww = window.innerWidth;
+    perView = ww >= 900 ? 3 : (ww >= 600 ? 2 : 1);
+    gapPx = ww >= 900 ? 16 : (ww >= 600 ? 14 : 12);
+    viewportW = Math.round(windowEl.getBoundingClientRect().width);
+    slideW = Math.round((viewportW - (perView - 1) * gapPx) / perView);
     slides.forEach(s=>{ s.style.minWidth = slideW+'px'; s.style.maxWidth = slideW+'px'; });
-    track.style.width = (slides.length * slideW) + 'px';
+    track.style.gap = gapPx + 'px';
+    track.style.width = (slides.length * slideW + (slides.length - 1) * gapPx) + 'px';
+    numPages = Math.ceil(slides.length / perView);
+    buildDots();
     applyTransform();
     // force reflow then restore transition
     void track.offsetHeight; // reflow
@@ -89,7 +171,7 @@
   }
 
   function showSlide(i){
-    idx = (i + slides.length) % slides.length;
+    idx = (i + numPages) % numPages;
     applyTransform();
     dots.forEach((d,j)=>d.classList.toggle('active',j===idx));
   }
@@ -97,10 +179,22 @@
   function startAuto(){ if(timerId) return; timerId = setInterval(()=> showSlide(idx+1), INTERVAL_MS); }
   function stopAuto(){ if(timerId){ clearInterval(timerId); timerId=null; } }
 
+  function buildDots(){
+    if(!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    dots = Array.from({length: numPages}).map((_,i)=>{
+      const span = document.createElement('span');
+      span.className = 'dot' + (i===idx ? ' active' : '');
+      span.dataset.slide = String(i+1);
+      span.onclick = ()=>{ stopAuto(); showSlide(i); startAuto(); };
+      dotsWrap.appendChild(span);
+      return span;
+    });
+  }
+
   if(track && slides.length && prev && next){
     prev.onclick = ()=>{ stopAuto(); showSlide(idx-1); startAuto(); };
     next.onclick = ()=>{ stopAuto(); showSlide(idx+1); startAuto(); };
-    dots.forEach((dot,i)=> dot.onclick = ()=>{ stopAuto(); showSlide(i); startAuto(); });
     if(container){
       container.addEventListener('mouseenter', stopAuto);
       container.addEventListener('mouseleave', startAuto);
