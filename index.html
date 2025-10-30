@@ -1,57 +1,160 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chào mừng | MyBlog</title>
-  <meta name="description" content="Trang chào mừng đơn giản, hiện đại và responsive." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Cá nhân – Tuấn Anh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 <body>
-  <main>
-    <section class="card" aria-labelledby="welcome-title">
-      <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="url(#g1)" d="M0,192L60,160C120,128,240,64,360,58.7C480,53,600,107,720,144C840,181,960,203,1080,208C1200,213,1320,203,1380,197.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#22d3ee"/>
-            <stop offset="100%" stop-color="#a78bfa"/>
-          </linearGradient>
-        </defs>
-      </svg>
+  <div class="sky-bg">
+    <!-- Mặt trời -->
+    <svg class="sun" viewBox="0 0 90 90"><circle cx="45" cy="45" r="30" fill="#ffd94a"/></svg>
+    <!-- Nhiều đám mây (6 cloud, layer & size khác nhau) -->
+    <svg class="cloud cloud1" viewBox="0 0 64 32"><ellipse cx="24" cy="14" rx="24" ry="12" fill="#fff" opacity=".93"/><ellipse cx="44" cy="17" rx="19" ry="10" fill="#fff" opacity=".75"/></svg>
+    <svg class="cloud cloud2" viewBox="0 0 58 28"><ellipse cx="19" cy="16" rx="17" ry="10" fill="#fff"/><ellipse cx="37" cy="14" rx="14" ry="7" fill="#fff" opacity=".82"/></svg>
+    <svg class="cloud cloud3" viewBox="0 0 76 37"><ellipse cx="38" cy="20" rx="24" ry="14" fill="#fff" opacity=".92"/><ellipse cx="55" cy="11" rx="18" ry="9" fill="#fff" opacity=".7"/></svg>
+    <svg class="cloud cloud4" viewBox="0 0 56 24"><ellipse cx="18" cy="13" rx="16" ry="8.5" fill="#fff" opacity=".92"/><ellipse cx="38" cy="13" rx="14" ry="7.2" fill="#fff" opacity=".8"/></svg>
+    <svg class="cloud cloud5" viewBox="0 0 53 23"><ellipse cx="21" cy="10" rx="13" ry="6" fill="#fff"/><ellipse cx="37" cy="13.5" rx="12" ry="6" fill="#fff" opacity=".73"/></svg>
+    <svg class="cloud cloud6" viewBox="0 0 49 19"><ellipse cx="12" cy="11" rx="11" ry="7" fill="#fff" opacity=".85"/><ellipse cx="32" cy="10" rx="14" ry="7" fill="#fff" opacity=".7"/></svg> 
+  </div>
+  <header class="header">
+    <div class="header__container">
+      <span class="header__title">Tuấn Anh Blog</span>
+      <nav class="header__nav">
+        <a href="#" class="header__nav-link">Home</a>
+        <a href="#" class="header__nav-link">Blog</a>
+        <a href="#" class="header__nav-link">About</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="inner">
-        <span class="tagline"><span class="dot" aria-hidden="true"></span> Online • Sẵn sàng chào đón bạn</span>
-        <h1 id="welcome-title">Chào mừng đến với MyBlog 👋</h1>
-        <p class="lead">
-          Trang chào mừng tối giản, đẹp mắt và chạy mượt trên mọi thiết bị.
-          Bạn có thể dùng làm trang chủ, “coming soon” hoặc landing page nhỏ.
-        </p>
-        <div class="actions">
-          <a class="btn" href="#bat-dau" aria-label="Bắt đầu ngay">🚀 Bắt đầu ngay</a>
-          <a class="btn secondary" href="#tim-hieu-them" aria-label="Tìm hiểu thêm">📘 Tìm hiểu thêm</a>
+  <section class="hero-slider">
+    <!-- Intro: máy bay kéo banner bay ngang và khói mờ dần -->
+    <div class="intro-flyby" aria-hidden="true">
+      <svg class="intro-plane" viewBox="0 0 120 40" width="120" height="40">
+        <rect x="8" y="16" width="44" height="12" rx="6" fill="#1e88e5" stroke="#111" stroke-width="1.5"/>
+        <polygon points="52,22 72,20 72,24" fill="#90a4ae" stroke="#111" stroke-width="1"/>
+        <rect x="24" y="10" width="30" height="4" rx="2" fill="#eceff1" stroke="#111" stroke-width="1"/>
+        <circle cx="20" cy="22" r="3" fill="#ef5350"/>
+      </svg>
+      <div class="intro-banner">
+        <span>Chào mừng bạn đến với Blog của Tuấn Anh</span>
+      </div>
+    </div>
+    <div class="smoke-overlay" aria-hidden="true"></div>
+    <div class="slides-track">
+      <div class="slide" id="slide-1">
+        <h1 class="slide__welcome">Chào mừng bạn đến với Blog của Tuấn Anh</h1>
+      </div>
+      <div class="slide" id="slide-2">
+        <img src="./assets/images/avatar.png" alt="Avatar" class="slide__avatar" width="100" height="100" />
+        <div class="slide__desc-wrap">
+          <p class="slide__desc">Sinh viên đam mê lập trình Java, JavaScript & Mạng.</p>
+          <p class="slide__desc">Chia sẻ kinh nghiệm thực tế & học hỏi không ngừng!</p>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="hero-slider__controls">
+      <button class="slider-btn" id="prev-slide" aria-label="Trang trước">&#8592;</button>
+      <button class="slider-btn" id="next-slide" aria-label="Trang sau">&#8594;</button>
+    </div>
+    <div class="hero-slider__dots">
+      <span class="dot active" data-slide="1"></span>
+      <span class="dot" data-slide="2"></span>
+    </div>
+  </section>
 
-    <section id="bat-dau" class="section">
-      <h2>Bắt đầu</h2>
-      <p>Đặt bài viết Markdown/HTML vào thư mục <code>/posts</code>. Ảnh để ở <code>/assets/images</code>.</p>
-    </section>
+  <section class="featured-post">
+    <h2 class="featured-post__title">Bài viết nổi bật</h2>
+    <div class="featured-slider">
+      <button class="featured-slider-prev slider-btn" aria-label="Trước">&#8592;</button>
+      <div class="featured-slider-window">
+        <div class="featured-slider-track">
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Java: Hiểu đúng về JVM, JRE, JDK" class="featured-thumb" />
+            <h3 class="slide-title">Java: Hiểu đúng về JVM, JRE, JDK</h3>
+            <p class="slide-desc">Bóc tách nền tảng chạy app Java – bạn đã thực sự hiểu đúng sự khác biệt và cơ chế vận hành?</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="OOP Java" class="featured-thumb" />
+            <h3 class="slide-title">OOP Java qua ví dụ thực chiến</h3>
+            <p class="slide-desc">Class, Interface, Abstract class & pattern OOP ứng dụng vào code thực tế!</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Collections" class="featured-thumb" />
+            <h3 class="slide-title">Java Collections – chọn DS nào?</h3>
+            <p class="slide-desc">Khi nào dùng ArrayList, HashMap, Set - góc nhìn thực tế và kinh nghiệm cá nhân.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Exception" class="featured-thumb" />
+            <h3 class="slide-title">Xử lý ngoại lệ trong Java</h3>
+            <p class="slide-desc">Best practice cho try/catch/finally và ví dụ code thực tế dễ nhớ!</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Socket Java" class="featured-thumb" />
+            <h3 class="slide-title">Lập trình mạng với Java</h3>
+            <p class="slide-desc">Hướng dẫn socket TCP/UDP, client-server từ lý thuyết tới thực hành.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Scope JS" class="featured-thumb" />
+            <h3 class="slide-title">JS: Scope, Hoisting, Closure</h3>
+            <p class="slide-desc">Nhận diện bẫy thường gặp và cách tư duy "closure" hiệu quả khi code JS.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Promise JS" class="featured-thumb" />
+            <h3 class="slide-title">JS: Promise & async-await</h3>
+            <p class="slide-desc">Quy trình và thực chiến chuỗi bất đồng bộ cho người bắt đầu với JS hiện đại.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="DOM JS" class="featured-thumb" />
+            <h3 class="slide-title">DOM & Event JS</h3>
+            <p class="slide-desc">Cách thao tác DOM hiệu quả và tối ưu hiệu suất cho interactive UI JS.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+          <div class="featured-slide">
+            <img src="./assets/images/BATUOC.png" alt="Fetch API" class="featured-thumb" />
+            <h3 class="slide-title">Fetch API & JSON</h3>
+            <p class="slide-desc">Cách gọi API hiện đại với fetch và xử lý dữ liệu JSON dễ hiểu.</p>
+            <a href="#" class="slide-readmore">Đọc bài</a>
+          </div>
+        </div>
+      </div>
+      <button class="featured-slider-next slider-btn" aria-label="Tiếp">&#8594;</button>
+    </div>
+    <div class="featured-slider-dots">
+      <span class="dot active" data-slide="1"></span>
+      <span class="dot" data-slide="2"></span>
+      <span class="dot" data-slide="3"></span>
+      <span class="dot" data-slide="4"></span>
+      <span class="dot" data-slide="5"></span>
+      <span class="dot" data-slide="6"></span>
+      <span class="dot" data-slide="7"></span>
+      <span class="dot" data-slide="8"></span>
+      <span class="dot" data-slide="9"></span>
+    </div>
+  </section>
 
-    <section id="tim-hieu-them" class="section">
-      <h2>Tìm hiểu thêm</h2>
-      <p>Tuỳ biến màu, font và layout trong <code>assets/css/index.css</code>. Thêm tương tác ở <code>assets/js/index.js</code>.</p>
-    </section>
+  <section class="skills">
+    <h2 class="skills__title">Kỹ năng</h2>
+    <ul class="skills__list">
+      <li class="skill"><span class="skill__icon">☕</span> Java</li>
+      <li class="skill"><span class="skill__icon">⚡</span> JavaScript</li>
+      <li class="skill"><span class="skill__icon">🌐</span> Network</li>
+    </ul>
+  </section>
 
-    <footer>
-      © <span id="y"></span> — Made with ❤️. 
-    </footer>
-  </main>
-
-  <script defer src="assets/js/index.js"></script>
+  <footer class="footer">
+    &copy; 2025 Tuấn Anh Blog
+  </footer>
+  <script src="./assets/js/index.js"></script>
 </body>
 </html>
